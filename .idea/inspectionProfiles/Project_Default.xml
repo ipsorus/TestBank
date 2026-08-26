@@ -1,0 +1,28 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <list>
+          <option value="pytest" />
+          <option value="requests" />
+          <option value="selenium" />
+          <option value="allure-pytest" />
+          <option value="docx2txt" />
+          <option value="python-docx" />
+          <option value="pytest-rerunfailures" />
+          <option value="pytest-lazy-fixture" />
+          <option value="pytest-xdist" />
+          <option value="pytest-dependency" />
+          <option value="pdfminer.six" />
+          <option value="pytest-cov" />
+          <option value="aspose-cells-python" />
+          <option value="beautifulsoup4" />
+          <option value="openpyxl" />
+          <option value="xlrd" />
+          <option value="pdfminer" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
