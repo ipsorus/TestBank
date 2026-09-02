@@ -19,4 +19,4 @@ def clean_user(objects: List[Any]):
         if isinstance(u, CreateUserResponse):
             api_manager.admin_steps.delete_user(u.id)
         else:
-            logging.warning(f"Error in delete user_if: {u.id}")
+            logging.warning(f"Error in delete user_id: {u.id}")
