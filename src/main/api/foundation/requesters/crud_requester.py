@@ -27,7 +27,7 @@ class CrudRequester(HttpRequester):
         self.response_spec(response)
         return response
 
-    def post(self, model: Optional[BaseModel]) -> Response:
+    def post(self, model: Optional[BaseModel] = None) -> Response:
         body = model.model_dump() if model is not None else ""
 
         with allure.step(f"POST {Config.fetch("backendUrl")}{self.endpoint.value.url}"):
