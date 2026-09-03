@@ -1,5 +1,3 @@
-from random import Random
-
 import pytest
 
 from src.main.api.generators.model_generator import RandomModelGenerator

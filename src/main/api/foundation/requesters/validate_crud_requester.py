@@ -17,6 +17,13 @@ class ValidateCrudRequester(HttpRequester):
             response_spec = response_spec
         )
 
+    def get(self, id: int) -> BaseModel:
+        response = self.crud_requester.get(id)
+        with allure.step(f"GET {Config.fetch("backendUrl")}{self.endpoint.value.url}/{id}"):
+            allure.attach(f"Validated Model response: {self.endpoint.value.response_model.__name__}")
+        self.response_spec(response)
+        return self.endpoint.value.response_model.model_validate(response.json())
+
     def post(self, model: Optional[BaseModel] = None) -> BaseModel:
         response = self.crud_requester.post(model)
         with allure.step(f"POST {Config.fetch("backendUrl")}{self.endpoint.value.url} and Validated Model"):

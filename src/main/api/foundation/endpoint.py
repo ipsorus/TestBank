@@ -4,10 +4,19 @@ from typing import Optional, Type
 
 from src.main.api.models.base_model import BaseModel
 from src.main.api.models.create_account_response import CreateAccountResponse
+from src.main.api.models.create_credit_request import CreateCreditRequest
+from src.main.api.models.create_credit_response import CreateCreditResponse
 from src.main.api.models.create_user_request import CreateUserRequest
 from src.main.api.models.create_user_response import CreateUserResponse
+from src.main.api.models.deposit_request import DepositRequest
+from src.main.api.models.deposit_response import DepositResponse
 from src.main.api.models.login_user_request import LoginUserRequest
 from src.main.api.models.login_user_response import LoginUserResponse
+from src.main.api.models.repay_credit_request import RepayCreditRequest
+from src.main.api.models.repay_credit_response import RepayCreditResponse
+from src.main.api.models.transaction_response import AccountTransactionResponse
+from src.main.api.models.transfer_request import TransferRequest
+from src.main.api.models.transfer_response import TransferResponse
 
 
 @dataclass
@@ -40,4 +49,34 @@ class Endpoint(Enum):
         request_model = None,
         url = 'account/create',
         response_model = CreateAccountResponse
+    )
+
+    CREATE_DEPOSIT = EndpointConfiguration(
+        request_model=DepositRequest,
+        url='account/deposit',
+        response_model=DepositResponse
+    )
+
+    GET_ACCOUNT_TRANSACTION = EndpointConfiguration(
+        request_model=None,
+        url='account/transactions',
+        response_model=AccountTransactionResponse
+    )
+
+    CREATE_TRANSFER = EndpointConfiguration(
+        request_model=TransferRequest,
+        url='account/transfer',
+        response_model=TransferResponse
+    )
+
+    REQUEST_CREDIT = EndpointConfiguration(
+        request_model=CreateCreditRequest,
+        url='credit/request',
+        response_model=CreateCreditResponse
+    )
+
+    REPAY_CREDIT = EndpointConfiguration(
+        request_model=RepayCreditRequest,
+        url='credit/repay',
+        response_model=RepayCreditResponse
     )
