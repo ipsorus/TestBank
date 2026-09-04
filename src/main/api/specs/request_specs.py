@@ -1,6 +1,7 @@
 import requests
 
 from src.main.api.configs.configs import Config
+from src.main.api.foundation.endpoint import Endpoint
 from src.main.api.models.login_user_request import LoginUserRequest
 from src.main.api.models.login_user_response import LoginUserResponse
 
@@ -18,7 +19,7 @@ class RequestSpecs:
     def auth_headers(username: str, password: str):
         request = LoginUserRequest(username=username, password=password)
         response = requests.post(
-            url='http://localhost:4111/api/auth/token/login',
+            url=f'{Config.fetch("backendUrl")}{Endpoint.LOGIN_USER.value.url}',
             json=request.model_dump(),
             headers=RequestSpecs.base_headers()
         )
