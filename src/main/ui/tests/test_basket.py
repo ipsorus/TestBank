@@ -1,10 +1,6 @@
 
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 
-from src.main.ui.pages.basket_page import BasketPage
-from src.main.ui.pages.catalog_page import CatalogPage
-from src.main.ui.pages.checkout_page import CheckoutPage
-from src.main.ui.pages.login_page import LoginPage
 from src.main.ui.steps.basket_steps import BasketSteps
 from src.main.ui.steps.catalog_steps import CatalogSteps
 from src.main.ui.steps.checkout_steps import CheckoutSteps
