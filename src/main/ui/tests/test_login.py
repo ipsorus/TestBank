@@ -55,4 +55,3 @@ def test_logout_visual_user(page):
     # Проверяем, что вернулись на страницу логина
     expect(page).to_have_url(login_steps.LOGIN_URL + '/')
     assert page.url == login_steps.LOGIN_URL + '/', "Ожидаем возврат на страницу логина"
-
