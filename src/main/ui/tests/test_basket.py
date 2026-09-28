@@ -1,4 +1,3 @@
-
 from playwright.sync_api import Page
 
 from src.main.ui.steps.basket_steps import BasketSteps
@@ -113,138 +112,7 @@ def test_checkout_without_items(page):
     error_text = checkout_steps.get_error_text()
     assert error_text != "", "Ожидалась ошибка при оформлении пустой корзины"
 
-# def test_add_item_and_check_in_cart_original(auth_page):
-#     """
-#     Оригинальный вариант из урока
-#     """
-#
-#     # Добавляем Sauce Labs Backpack
-#     auth_page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click()
-#
-#     # Переходим в корзину
-#     auth_page.locator(".shopping_cart_link").click()
-#
-#     # Проверяем, что товар есть
-#     item_name = auth_page.locator('[data-test="inventory-item-name"]')
-#     assert item_name.inner_text() == "Sauce Labs Backpack"
 
-# def test_remove_item_from_cart(auth_page):
-#
-#     # Добавляем Sauce Labs Backpack
-#     auth_page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click()
-#
-#     # Переходим в корзину
-#     auth_page.locator(".shopping_cart_link").click()
-#
-#     product_card = auth_page.locator('.cart_item')
-#     remove_button = product_card.locator("button")
-#     remove_button.click()
-#
-#     expect(auth_page.locator('[data-test="inventory-item"]')).not_to_be_visible()
-
-# def test_remove_item_from_cart_original(auth_page):
-#     """
-#     Оригинальный вариант из урока
-#     """
-#
-#     # Добавляем товар в корзину
-#     auth_page.locator('[data-test="add-to-cart-sauce-labs-fleece-jacket"]').click()
-#
-#     # Переходим в корзину
-#     auth_page.locator('[data-test="shopping-cart-link"]').click()
-#
-#     # Проверяем что товар в корзине
-#     jacket = auth_page.locator('.inventory_item_name', has_text='Sauce Labs Fleece Jacket')
-#     expect(jacket).to_be_visible()
-#
-#     # Удаляем товар
-#     auth_page.locator('[data-test="remove-sauce-labs-fleece-jacket"]').click()
-#
-#     # Проверяем, что товара больше нет в корзине
-#     expect(jacket).not_to_be_visible()
-
-# def test_remove_two_items_from_cart(auth_page):
-#
-#     # Добавляем Sauce Labs Backpack
-#     auth_page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click()
-#
-#     # Добавляем Test.allTheThings() T-Shirt (Red)
-#     auth_page.locator('[data-test="add-to-cart-test.allthethings()-t-shirt-(red)"]').click()
-#
-#     # Переходим в корзину
-#     auth_page.locator(".shopping_cart_link").click()
-#
-#     # Проверяем что товар в корзине
-#     backpack = auth_page.locator('.inventory_item_name', has_text='Sauce Labs Backpack')
-#     t_shirt = auth_page.locator('.inventory_item_name', has_text='Test.allTheThings() T-Shirt (Red)')
-#     expect(backpack).to_be_visible()
-#     expect(t_shirt).to_be_visible()
-#
-#     # Удаляем товар
-#     auth_page.locator('[data-test="remove-sauce-labs-backpack"]').click()
-#     auth_page.locator('[data-test="remove-test.allthethings()-t-shirt-(red)"]').click()
-#
-#     # Проверяем, что товара больше нет в корзине
-#     expect(backpack).not_to_be_visible()
-#     expect(t_shirt).not_to_be_visible()
-
-
-# def test_e2e(page):
-#     # Логин
-#     page.goto("https://www.saucedemo.com/")
-#     page.get_by_placeholder("Username").fill("standard_user")
-#     page.get_by_placeholder("Password").fill("secret_sauce")
-#     page.locator("#login-button").click()
-#
-#     # Добавляем Sauce Labs Backpack
-#     page.locator('[data-test="add-to-cart-sauce-labs-fleece-jacket"]').click()
-#
-#     # Добавляем Sauce Labs Backpack
-#     page.locator('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]').click()
-#
-#     # Переходим в корзину
-#     page.locator(".shopping_cart_link").click()
-#
-#     # Проверяем, что товары есть
-#     items = page.locator('[data-test="inventory-item-name"]').all_text_contents()
-#     assert "Sauce Labs Fleece Jacket" in items
-#     assert "Sauce Labs Bolt T-Shirt" in items
-#
-#     items_price = page.locator('.inventory_item_price').all_text_contents()
-#
-#     # Получение общей суммы товаров
-#     prices = [float(price.replace('$', '')) for price in items_price]
-#     total_items_price = sum(prices)
-#
-#     checkout_button = page.locator('#checkout')
-#     expect(checkout_button).to_be_visible()
-#     checkout_button.click()
-#
-#     # Заполнение данных и переход к оплате заказа
-#     page.locator('#first-name').fill("test")
-#     page.locator('#last-name').fill("testovik")
-#     page.locator('#postal-code').fill("650003")
-#
-#     continue_button = page.locator('#continue')
-#     expect(continue_button).to_be_visible()
-#     continue_button.click()
-#
-#     # Сумма заказа на странице оплаты
-#     checkout_items_total = page.locator('.summary_subtotal_label').inner_text()
-#
-#     assert total_items_price == float(checkout_items_total.split('$')[-1]), 'Суммы не совпадают'
-#
-#     # Получение Tax
-#     checkout_tax = page.locator('.summary_tax_label').inner_text()
-#
-#     # Получение итоговой стоимости товаров с tax на странице оплаты
-#     total_price = page.locator('.summary_total_label').inner_text()
-#
-#     price_with_tax = float(checkout_items_total.split('$')[-1]) + float(checkout_tax.split('$')[-1])
-#
-#     # Проверка рассчитанной итоговой цены и полученной на странице оплаты
-#     assert float(total_price.split('$')[-1]) == price_with_tax, 'Суммы не совпадают'
-#
 #     finish_button = page.locator('#finish')
 #     expect(finish_button).to_be_visible()
 #     finish_button.click()
@@ -348,6 +216,17 @@ def test_checkout_without_items(page):
 #
 #     # Жмем Checout
 #     auth_page.locator('[data-test="checkout"]').click()
+#
+#     # Заполянем поле First Name и Last Name
+#     auth_page.get_by_placeholder("First Name").fill("NewUser")
+#     auth_page.get_by_placeholder("Last Name").fill("Nrk")
+#
+#     # Жмем Continue
+#     auth_page.locator('[data-test="continue"]').click()
+#
+#     # Проверяем ошибку
+#     error_message = auth_page.locator('[data-test="error"]')
+#     expect(error_message).to_have_text('Error: Postal Code is required')
 #
 #     # Заполянем поле First Name и Last Name
 #     auth_page.get_by_placeholder("First Name").fill("NewUser")
