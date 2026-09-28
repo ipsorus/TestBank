@@ -1,4 +1,3 @@
-
 from playwright.sync_api import Page
 
 from src.main.ui.steps.basket_steps import BasketSteps

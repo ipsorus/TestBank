@@ -1,6 +1,5 @@
-from playwright.sync_api import expect, Page
+from playwright.sync_api import Page
 
-from src.main.ui.pages.catalog_page import CatalogPage
 from src.main.ui.steps.catalog_steps import CatalogSteps
 
 
