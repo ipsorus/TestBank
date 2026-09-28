@@ -227,3 +227,14 @@ def test_checkout_without_items(page):
 #     # Проверяем ошибку
 #     error_message = auth_page.locator('[data-test="error"]')
 #     expect(error_message).to_have_text('Error: Postal Code is required')
+#
+#     # Заполянем поле First Name и Last Name
+#     auth_page.get_by_placeholder("First Name").fill("NewUser")
+#     auth_page.get_by_placeholder("Last Name").fill("Nrk")
+#
+#     # Жмем Continue
+#     auth_page.locator('[data-test="continue"]').click()
+#
+#     # Проверяем ошибку
+#     error_message = auth_page.locator('[data-test="error"]')
+#     expect(error_message).to_have_text('Error: Postal Code is required')
